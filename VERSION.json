@@ -1,0 +1,12 @@
+{
+  "name": "coovox-kamailio-multidevice-bridge",
+  "version": "v1.0.0",
+  "baseline_date": "2026-10-30",
+  "production_config_sha256": "f3bd6bc898d543701ac7db0016b319ba1b32ab0201a21184173934a2aa97632b",
+  "purpose": "sanitized reproducible templates, not production database or credentials",
+  "platform": "Ubuntu 24.04 LTS",
+  "kamailio": "5.7.4",
+  "rtpengine": "11.5.1",
+  "openvpn": "2.6",
+  "production_status": "confirmed multi-device registration/ring for ext 100 on 2026-10-30"
+}

@@ -1,0 +1,18 @@
+[Unit]
+Description=CooVox staging SIP edge proxy (Kamailio)
+After=network-online.target openvpn-server@coovox.service coovox-rtpengine.service
+Wants=network-online.target
+Requires=openvpn-server@coovox.service coovox-rtpengine.service
+
+[Service]
+Type=simple
+User=kamailio
+Group=kamailio
+ExecStart=/usr/sbin/kamailio -DD -f /etc/kamailio/coovox.cfg -m 32 -M 8
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target

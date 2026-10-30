@@ -1,0 +1,18 @@
+[Unit]
+Description=CooVox RTPengine isolated user-space media proxy
+After=network-online.target openvpn-server@coovox.service
+Wants=network-online.target
+Requires=openvpn-server@coovox.service
+
+[Service]
+Type=simple
+User=rtpengine
+Group=rtpengine
+ExecStart=/usr/bin/rtpengine --foreground --config-file=/etc/rtpengine/coovox.conf --config-section=rtpengine
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target

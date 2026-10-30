@@ -1,0 +1,12 @@
+[Unit]
+Description=Persist CooVox PBX-authenticated SIP NAT contacts to local SQLite
+After=coovox-kamailio.service
+ConditionPathExists=/var/lib/coovox-sip/kamailio_ctl
+
+[Service]
+Type=oneshot
+User=kamailio
+Group=kamailio
+ExecStart=/usr/sbin/kamcmd -s unixs:/var/lib/coovox-sip/kamailio_ctl htable.store reg
+NoNewPrivileges=true
+TimeoutStartSec=10s

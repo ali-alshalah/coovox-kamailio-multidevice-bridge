@@ -1,0 +1,11 @@
+[Unit]
+Description=Save CooVox SIP registration NAT bindings every minute
+
+[Timer]
+OnActiveSec=60s
+OnUnitActiveSec=60s
+AccuracySec=10s
+Unit=coovox-registrations-snapshot.service
+
+[Install]
+WantedBy=timers.target

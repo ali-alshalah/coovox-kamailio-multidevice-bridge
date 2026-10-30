@@ -1,0 +1,20 @@
+name: Validate sanitized SIP bridge templates
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  render-and-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test template parser and privacy checks
+        run: python3 -m unittest discover -s tests -v
+      - name: Render safe example configuration
+        run: python3 scripts/render_config.py --env .env.example --output build
+      - name: Confirm public fork and multi-registration features
+        run: |
+          grep -F 'branch_route[PUBLIC_FORK]' build/coovox.cfg
+          grep -F 'coovox_multi_contacts' build/coovox.cfg
+          test -f build/rtpengine.conf
