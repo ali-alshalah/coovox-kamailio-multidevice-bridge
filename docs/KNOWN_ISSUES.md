@@ -2,6 +2,8 @@
 
 The following are **not** claimed fixed by the stable multiple-device release.
 
+**Resolved deployment misconfiguration (2026-10-30):** Extensions 105 and 107 were not registering because their phones pointed at a ZYCOO cloud SIP host instead of the project SIP server. Correcting `Server Address` on the endpoints, without changing proxy code or credentials, restored registration. See [Arabic operations: case A2](OPERATIONS_AR.md).
+
 1. **Extension 151 repeated SIP `401` after Digest.** The phone sent `REGISTER`, CooVox challenged and a second authenticated REGISTER also received `401`. This points to PBX/endpoint credential, realm or extension account behavior rather than broken UDP routing. Do not repeatedly change passwords in Kamailio; PBX authenticates.
 2. **CooVox automatic audio recording.** An extension was configured as `Call Recording: In & Out` in the PBX web UI, but actual recording files remained unverified. This is a PBX recording/storage subsystem question, distinct from SIP signaling.
 3. **CooCall APP notifications and stale contacts.** `app_100` uses special rotated UDP ports. In specific traces, SIP `NOTIFY`/`OPTIONS` attempts got `481` or `408`. These do not automatically imply a failed answered call; trace the full transaction and current NAT contact.
