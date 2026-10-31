@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = ("SIP_PUBLIC_IP", "SIP_PUBLIC_HOST", "VPN_SERVER_IP", "PBX_VPN_IP")
 TEMPLATES = {
+    "templates/kamailio/registration-keepalive.json.tpl": "registration-keepalive.json",
     "templates/kamailio/coovox.cfg.tpl": "coovox.cfg",
     "templates/rtpengine/coovox.conf.tpl": "rtpengine.conf",
     "templates/network/coovox-sip-official-proxy.tpl": "coovox-sip-official-proxy",

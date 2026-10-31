@@ -1,0 +1,11 @@
+[Unit]
+Description=Keep extension 100 SIP NAT path active every 15 seconds
+
+[Timer]
+OnBootSec=20s
+OnUnitActiveSec=15s
+AccuracySec=1s
+Unit=coovox-registration-keepalive.service
+
+[Install]
+WantedBy=timers.target

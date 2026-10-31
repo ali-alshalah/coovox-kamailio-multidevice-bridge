@@ -1,0 +1,28 @@
+[Unit]
+Description=OPTIONS keepalive for allowlisted PBX-authenticated SIP contacts
+After=coovox-kamailio.service
+ConditionPathExists=/var/lib/coovox-sip/kamailio_ctl
+
+[Service]
+Type=oneshot
+User=kamailio
+Group=kamailio
+ExecStart=/usr/bin/python3 /usr/local/lib/coovox/registration_keepalive.py
+StateDirectory=coovox-nat-keepalive
+StateDirectoryMode=0700
+UMask=0077
+TimeoutStartSec=12s
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+MemoryMax=80M
+Nice=10
